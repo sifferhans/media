@@ -1,8 +1,8 @@
 <template>
-  <div class="elder-image" :class="['elder-image--' + placement]">
-    <label v-if="label" :for="id" class="elder-image__label">
+  <div class="kvass-media" :class="['kvass-media--' + placement]">
+    <label v-if="label" :for="id" class="kvass-media__label">
       {{ label }}
-      <span v-if="isRequired" class="elder-image__label-required">*</span>
+      <span v-if="isRequired" class="kvass-media__label-required">*</span>
     </label>
     <!-- <InputComponent label="Velg media type">
       <select v-model="mediaType" class="elder-input__element">
@@ -12,11 +12,10 @@
       </select>
     </InputComponent> -->
     <!-- <Type :type="mediaType" /> -->
-    <MediaOption />
+
     <div
-      class="elder-image__droparea"
+      class="kvass-media__droparea"
       :class="dropareaClass"
-      :style="dropareaStyle"
       @drop="onDrop"
       @dragover="onDragOver"
       @dragleave="onLeave"
@@ -30,19 +29,21 @@
         :disabled="!canUpload"
         :multiple="multiple"
       />
-      <div v-if="canUpload" class="elder-image__droparea-instruction">
+      <div v-if="canUpload" class="kvass-media__droparea-instruction">
         <slot v-if="isValidDragOver" name="drop-message">
           <SlotHandler :value="dropMessage" />
         </slot>
 
         <FontAwesomeIcon v-else icon="ban" size="lg" />
       </div>
-      <div v-if="!multiple && selected && !isDisabled" class="elder-image__thumbnail-delete" @click="remove(selected)">
+      <div v-if="!multiple && selected && !isDisabled" class="kvass-media__thumbnail-delete" @click="remove(selected)">
         <FontAwesomeIcon icon="trash"></FontAwesomeIcon>
       </div>
+      <component v-if="selected" :is="getTypeComponent(selected, 'Preview')" />
     </div>
+    <TypeSelector :value="typesComp" />
 
-    <Draggable v-if="multiple" v-model="thumbnails" :disabled="!sortable || isDisabled" class="elder-image__thumbnails">
+    <Draggable v-if="multiple" v-model="thumbnails" :disabled="!sortable || isDisabled" class="kvass-media__thumbnails">
       <thumbnail
         v-for="(item, index) in thumbnails"
         :key="index"
@@ -71,7 +72,8 @@ import Uploader from './uploader'
 import Thumbnail from './thumbnail'
 import Draggable from 'vuedraggable'
 import SlotHandler from './SlotHandler'
-import MediaOption from './Option'
+import TypeSelector from './TypeSelector'
+import Types from './Types'
 
 import './icons'
 
@@ -93,6 +95,10 @@ const QueueTemplate = {
 export default {
   props: {
     value: [Array, Object, String],
+    types: {
+      type: Array,
+      default: () => ['Image'],
+    },
     label: String,
     multiple: Boolean,
     sortable: {
@@ -154,10 +160,18 @@ export default {
     isDisabled: AttributeBoolean('disabled'),
     dropareaClass() {
       return {
-        'elder-image__droparea--active': this.isDragOver,
-        'elder-image__droparea--invalid': !this.isValidDragOver,
-        'elder-image__droparea--selected': this.selected,
+        'kvass-media__droparea--active': this.isDragOver,
+        'kvass-media__droparea--invalid': !this.isValidDragOver,
+        'kvass-media__droparea--selected': this.selected,
       }
+    },
+    typesComp() {
+      return this.types
+        .map((type) => {
+          if (typeof type === 'string') return Types[type]
+          return type
+        })
+        .filter(Boolean)
     },
     serializeComp() {
       return this.serialize || Options.serialize
@@ -268,6 +282,12 @@ export default {
 
       return (this.selected = this.multiple ? this.value[0] : this.value)
     },
+    getTypeComponent(obj, component) {
+      let match = this.typesComp.find((t) => t.Condition(obj))
+      if (!match) return
+
+      return match.Components[component]
+    },
   },
   created() {
     this.id = this._uid
@@ -278,7 +298,7 @@ export default {
     Draggable,
     FontAwesomeIcon,
     SlotHandler,
-    MediaOption,
+    TypeSelector,
   },
 }
 </script>
@@ -286,7 +306,7 @@ export default {
 <style lang="scss">
 @import './main';
 
-.elder-image {
+.kvass-media {
   position: relative;
 
   display: flex;
@@ -345,7 +365,7 @@ export default {
         opacity: 0.15;
       }
 
-      &.elder-image__droparea--invalid {
+      &.kvass-media__droparea--invalid {
         cursor: not-allowed;
 
         color: GetVariable('error');
@@ -357,19 +377,19 @@ export default {
           background-color: GetVariable('error');
         }
 
-        .elder-image__droparea-instruction {
+        .kvass-media__droparea-instruction {
           background-color: transparent;
         }
       }
     }
 
-    &:hover .elder-image__thumbnail-delete {
+    &:hover .kvass-media__thumbnail-delete {
       transform: translateY(0);
 
       opacity: 1;
     }
 
-    .elder-image__thumbnail-delete {
+    .kvass-media__thumbnail-delete {
       top: initial;
       right: 1rem;
       bottom: 1rem;
@@ -382,7 +402,7 @@ export default {
       transition: opacity 250ms ease;
 
       @media (hover: hover) {
-        .elder-image__droparea--selected & {
+        .kvass-media__droparea--selected & {
           padding: 1rem;
 
           opacity: 0;
@@ -391,8 +411,8 @@ export default {
         }
       }
 
-      .elder-image__droparea:hover &,
-      .elder-image__droparea--active & {
+      .kvass-media__droparea:hover &,
+      .kvass-media__droparea--active & {
         opacity: 1;
       }
     }
@@ -428,7 +448,7 @@ export default {
   &__uploader {
     margin-top: 1rem;
 
-    .elder-image--inside & {
+    .kvass-media--inside & {
       position: absolute;
       top: 0;
       right: 0;
@@ -453,7 +473,7 @@ export default {
       margin-left: $space;
     }
 
-    .elder-image--inside & {
+    .kvass-media--inside & {
       position: absolute;
       right: 2rem;
       bottom: 2rem;
