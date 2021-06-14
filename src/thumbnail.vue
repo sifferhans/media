@@ -1,39 +1,33 @@
 <template>
-  <div
-    class="elder-image__thumbnail"
-    :class="{ 'elder-image__thumbnail--selected': selected }"
-    :style="style"
-    @click="$emit('click')"
-  >
-    <div v-if="!disabled" class="elder-image__thumbnail-delete" @click="$emit('delete')">
+  <div :class="{ 'kvass-media-thumbnail--selected': value.selected }" class="kvass-media-thumbnail">
+    <component :is="value.typeConfig.Components.Thumbnail" :value="value" v-on="$listeners" :style="style"> </component>
+    <div class="kvass-media-thumbnail--delete" @click="$emit('delete')">
       <FontAwesomeIcon icon="trash"></FontAwesomeIcon>
     </div>
   </div>
 </template>
 
 <script>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 export default {
   props: {
     value: Object,
-    selected: Boolean,
     size: {
       type: String,
       default: '4rem',
     },
+    types: {
+      type: Array,
+    },
+    disabled: {},
   },
-  inject: ['disabled'],
+
   computed: {
     style() {
       return {
-        backgroundImage: `url(${this.value.url})`,
         width: this.size,
         height: this.size,
       }
     },
-  },
-  components: {
-    FontAwesomeIcon,
   },
 }
 </script>
@@ -41,48 +35,48 @@ export default {
 <style lang="scss">
 @import './main';
 
-.elder-image__thumbnail {
-  position: relative;
-  background-position: center;
-  background-size: cover;
+.kvass-media-thumbnail {
   background-color: GetVariable('input-color');
-
   cursor: pointer;
-
   border-radius: GetVariable('border-radius');
   border: 1px solid GetVariable('border-color');
+  position: relative;
 
   &--selected {
     border-color: GetVariable('primary');
     box-shadow: 0 3px 10px -2px rgba(black, 0.3);
   }
 
-  &-delete {
+  &--delete {
     $size: 25px;
+    height: $size;
+    width: $size;
+    right: -$size/5;
+    top: -$size/5;
+    position: absolute;
+    z-index: 2;
 
     color: white;
     display: flex;
-    font-size: 0.65em;
+
     justify-content: center;
     align-items: center;
-    position: absolute;
-    right: -$size/5;
-    top: -$size/5;
-    // background-color: rgba(GetVariable('error'), 0.9);
+
+    font-size: 0.65em;
     background-color: GetVariable('error');
     border-radius: 50%;
-    height: $size;
-    width: $size;
+
     cursor: pointer;
     transition: opacity 150ms ease-out, transform 150ms ease-out;
-    z-index: 2;
 
     @media (hover: hover) {
       opacity: 0;
       transform: translateY(50%);
     }
+  }
 
-    .elder-image__thumbnail:hover & {
+  &:hover {
+    .kvass-media-thumbnail--delete {
       opacity: 1;
       transform: translateY(0);
     }

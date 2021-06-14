@@ -5,7 +5,9 @@ import Preview from './Preview'
 
 export default {
   Name: 'Image',
-  Condition: (x) => /^image\/.+/i.test(x),
+  Condition: (x) => {
+    return /^image\/.+/i.test(x.type)
+  },
   Components: {
     Create,
     CreateTrigger,

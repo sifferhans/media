@@ -1,11 +1,7 @@
 <template>
-  <div>
-    test
-  </div>
+  <div>Image Create Trigger</div>
 </template>
 
 <script>
 export default {}
 </script>
-
-<style lang="scss" scoped></style>

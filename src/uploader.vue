@@ -1,10 +1,10 @@
 <template>
-  <div class="elder-image__uploader">
+  <div class="kvass-media-uploader">
     <div>{{ value | floor }} %</div>
-    <div class="elder-image__uploader-bar">
-      <div class="elder-image__uploader-bar-value" :style="{ width: value + '%' }"></div>
+    <div class="kvass-media-uploader__bar">
+      <div class="kvass-media-uploader__bar-value" :style="{ width: value + '%' }"></div>
     </div>
-    <div class="elder-image__uploader-meta">
+    <div class="kvass-media-uploader__meta">
       <div v-if="hasMultiple">{{ current }} / {{ total }}</div>
       <div v-if="bytes">({{ size }})</div>
     </div>
@@ -43,7 +43,7 @@ export default {
 <style lang="scss">
 @import './main';
 
-.elder-image__uploader {
+.kvass-media-uploader {
   font-size: 0.7em;
   font-weight: bold;
 
@@ -59,7 +59,7 @@ export default {
   border-radius: GetVariable('border-radius');
   background-color: white;
 
-  &-bar {
+  &__bar {
     flex-grow: 1;
 
     height: 5px;
@@ -69,7 +69,7 @@ export default {
     background-color: GetVariable('border-color');
   }
 
-  &-bar-value {
+  &__bar-value {
     height: inherit;
 
     transition: width 100ms ease;
@@ -78,7 +78,7 @@ export default {
     background-color: GetVariable('primary');
   }
 
-  &-meta {
+  &__meta {
     display: flex;
     align-items: center;
 

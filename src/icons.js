@@ -1,8 +1,7 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash'
 import { faBan } from '@fortawesome/free-solid-svg-icons/faBan'
+import { faImage } from '@fortawesome/free-solid-svg-icons/faImage'
+import { faBars } from '@fortawesome/free-solid-svg-icons/faBars'
 
-import { faVideo } from '@fortawesome/free-solid-svg-icons/faVideo'
-import { faStreetView } from '@fortawesome/free-solid-svg-icons/faStreetView'
-
-library.add(faTrash, faBan, faVideo, faStreetView)
+library.add(faTrash, faBan, faImage, faBars)

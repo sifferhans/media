@@ -2,7 +2,7 @@ import MediaComponent from './src/Component.vue'
 
 const Options = {
   upload(file, onProgress) {
-    console.warn('[vue-elder-image]: You need to setup the upload function before using this plugin')
+    console.warn('[@kvass/media]: You need to setup the upload function before using this plugin')
     onProgress(50)
     return new Promise((resolve, reject) => {
       let reader = new FileReader()
@@ -19,6 +19,12 @@ const Options = {
     return val
   },
   dropMessage: 'Drag an image here or <b>browse</b> to upload.',
+  selectLabel: 'Select',
+  actionLabels: {
+    save: 'Save',
+    cancel: 'Cancel',
+    select: 'Select',
+  },
 }
 
 const install = (Vue) => {
