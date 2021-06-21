@@ -49,7 +49,7 @@
 <script>
 import { AttributeBoolean } from './utils'
 import Draggable from 'vuedraggable'
-import Thumbnail from './Thumbnail'
+import Thumbnail from './thumbnail'
 import SlotHandler from './SlotHandler'
 import TypeSelector from './TypeSelector'
 import Types from './Types'

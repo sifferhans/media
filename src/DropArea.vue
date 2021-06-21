@@ -50,7 +50,7 @@
 import { AttributeBoolean, Clone, IsAccepted } from './utils'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { Options } from '../index'
-import Uploader from './Uploader'
+import Uploader from './uploader'
 import SlotHandler from './SlotHandler'
 
 const QueueTemplate = {
