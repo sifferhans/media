@@ -13,8 +13,9 @@
     >
       <slot name="preview" />
 
-      <div v-if="canUpload" class="kvass-media-droparea__instruction">
+      <div class="kvass-media-droparea__instruction">
         <input
+          v-if="canUpload"
           :type="type"
           :accept="accept"
           :required="isRequired"
@@ -25,13 +26,14 @@
           class="kvass-media-droparea__input"
         />
         <template v-if="isValidDragOver">
-          <slot name="drop-message">
+          <slot name="drop-message" v-if="!isDisabled">
             <SlotHandler :value="dropMessage" />
           </slot>
           <slot />
         </template>
 
         <FontAwesomeIcon v-else icon="ban" size="lg" />
+        <slot name="custom-message" />
       </div>
     </div>
     <Uploader
@@ -116,6 +118,7 @@ export default {
     uploadComp() {
       return this.upload || Options.upload
     },
+
     canUpload() {
       return !this.isDisabled && !this.queue.total
     },
@@ -205,52 +208,53 @@ export default {
   background-repeat: no-repeat;
   background-position: center;
 
-  & > div {
-    flex-grow: 1;
-    height: inherit;
-    &:before {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      content: '';
-      opacity: 0;
-      background-color: GetVariable('primary');
-    }
+  flex-grow: 1;
+  height: inherit;
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    opacity: 0;
+    background-color: GetVariable('primary');
   }
 
   &--active {
-    & > div {
-      border-color: GetVariable('primary');
+    iframe {
+      display: none;
+    }
 
-      &:before {
-        opacity: 1;
-      }
+    border-color: GetVariable('primary');
+
+    &:before {
+      opacity: 0.15;
     }
   }
 
   &--invalid {
-    & > div {
-      cursor: not-allowed;
-      color: GetVariable('error');
-      border-color: GetVariable('error');
-      background-image: none !important;
+    iframe {
+      display: none;
+    }
+    cursor: not-allowed;
+    color: GetVariable('error');
+    border-color: GetVariable('error');
+    background-image: none !important;
 
-      &:before {
-        opacity: 0.2;
-        background-color: GetVariable('error');
-      }
+    &:before {
+      opacity: 0.2;
+      background-color: GetVariable('error');
+    }
 
-      .kvass-media-droparea__instruction {
-        background-color: transparent;
-      }
+    .kvass-media-droparea__instruction {
+      background: transparent !important;
     }
   }
 
   &__instruction {
     position: absolute;
-    max-height: 200px;
+    max-height: 250px;
     font-size: 0.9em;
     transition: opacity 250ms ease;
     text-align: center;

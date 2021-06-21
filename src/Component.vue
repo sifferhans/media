@@ -15,9 +15,10 @@
       v-on="$listeners"
       @select="select"
       :selected="selected"
+      :disabled="!hasImage"
     >
       <template #default>
-        <TypeSelector :value="typesComp" @add="addItem" />
+        <TypeSelector :value="typesComp" @add="addItem" :has-image="hasImage" />
       </template>
 
       <template #preview>
@@ -26,6 +27,9 @@
 
       <template #drop-message>
         <slot name="drop-message" />
+      </template>
+      <template #custom-message>
+        <slot name="custom-message" />
       </template>
     </DropArea>
 
@@ -102,6 +106,9 @@ export default {
   },
 
   computed: {
+    hasImage() {
+      return this.typesComp.some((item) => item.Name === 'Image')
+    },
     items: {
       get() {
         if (!this.value) return []
@@ -178,17 +185,13 @@ export default {
 
 .kvass-media {
   position: relative;
-
   display: flex;
   flex-direction: column;
-
   text-align: left;
 
   &__label {
     font-weight: bold;
-
     display: block;
-
     margin-bottom: 0.5em;
 
     &-required {
@@ -198,7 +201,6 @@ export default {
 
   &__thumbnails {
     $space: 1rem;
-
     display: flex;
     flex-wrap: wrap;
     margin-top: 1rem;

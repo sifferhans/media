@@ -1,6 +1,14 @@
 <template>
-  <div :class="{ 'kvass-media-thumbnail--selected': value.selected }" class="kvass-media-thumbnail">
-    <component :is="value.typeConfig.Components.Thumbnail" :value="value" v-on="$listeners" :style="style"> </component>
+  <div class="kvass-media-thumbnail">
+    <component
+      :class="{ 'kvass-media-thumbnail__item--selected': value.selected }"
+      class="kvass-media-thumbnail__item"
+      :is="value.typeConfig.Components.Thumbnail"
+      :value="value"
+      v-on="$listeners"
+      :style="style"
+    >
+    </component>
     <div class="kvass-media-thumbnail--delete" @click="$emit('delete')">
       <FontAwesomeIcon icon="trash"></FontAwesomeIcon>
     </div>
@@ -36,15 +44,18 @@ export default {
 @import './main';
 
 .kvass-media-thumbnail {
-  background-color: GetVariable('input-color');
-  cursor: pointer;
-  border-radius: GetVariable('border-radius');
-  border: 1px solid GetVariable('border-color');
   position: relative;
 
-  &--selected {
-    border-color: GetVariable('primary');
-    box-shadow: 0 3px 10px -2px rgba(black, 0.3);
+  &__item {
+    background-color: GetVariable('input-color');
+    cursor: pointer;
+
+    border: 1px solid GetVariable('border-color');
+    border-radius: GetVariable('border-radius');
+    &--selected {
+      border-color: GetVariable('primary');
+      box-shadow: 0 3px 10px -2px rgba(black, 0.3);
+    }
   }
 
   &--delete {

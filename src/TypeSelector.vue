@@ -1,13 +1,17 @@
 <template>
-  <div class="kvass-media-type-selector">
+  <div v-if="!hasOnlyImage" class="kvass-media-type-selector">
+    <span class="kvass-media-type-selector__info">{{
+      hasImage ? ` / ${label.selectMessage.toLowerCase()}` : label.selectMessage
+    }}</span>
+
     <DropdownComponent>
-      <ButtonComponent :label="label.select" type="button" />
+      <ButtonComponent :label="label.select" type="button" class="kvass-media-type-selector__action" />
       <template #dropdown>
         <component
           :is="item.Components.CreateTrigger"
-          v-for="item in itemComp"
+          v-for="item in value"
           :key="item.Name"
-          @click.native="show = item"
+          @click.native="open(item)"
         />
       </template>
     </DropdownComponent>
@@ -51,6 +55,7 @@ export default {
   props: {
     value: Array,
     upload: Function,
+    hasImage: Boolean,
   },
   data() {
     return {
@@ -60,11 +65,13 @@ export default {
     }
   },
   computed: {
-    itemComp() {
-      return this.value.filter((item) => item.Name !== 'Image')
+    hasOnlyImage() {
+      if (this.value.length === 1 && this.value[0].Name === 'Image') return true
+      return false
     },
+
     label() {
-      return Options.actionLabels
+      return Options.labels
     },
   },
   methods: {
@@ -73,6 +80,10 @@ export default {
       this.promise = this.$refs.creator.prepareData().then((data) => {
         this.$emit('add', data)
       })
+    },
+    open(item) {
+      if (item.Name === 'Image') return this.$parent.$refs.input.click()
+      this.show = item
     },
   },
   components: {
@@ -86,11 +97,15 @@ export default {
 
 <style lang="scss">
 .kvass-media-type-selector {
+  margin-top: 0.5rem;
   display: flex;
-  justify-content: center;
-  &__item {
-    margin-top: 1rem;
-    margin-right: 1rem;
+  font-size: 0.9em;
+
+  flex-direction: column;
+  align-items: center;
+
+  &__info {
+    margin-bottom: 1rem;
   }
 }
 .kvass-card {
