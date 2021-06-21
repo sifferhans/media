@@ -22,7 +22,7 @@
   },
   "scripts": {
     "test": "echo \"No tests yet\"",
-    "semantic-release": "semantic-release"
+    "semantic-release": "dotenv semantic-release"
   },
   "repository": {
     "type": "git",
