@@ -33,7 +33,16 @@
         </template>
 
         <FontAwesomeIcon v-else icon="ban" size="lg" />
+
         <slot name="custom-message" />
+      </div>
+
+      <div
+        v-if="!multiple && selected && !isDisabled"
+        class="kvass-media-thumbnail--delete"
+        @click="$emit('remove', selected)"
+      >
+        <FontAwesomeIcon icon="trash"></FontAwesomeIcon>
       </div>
     </div>
     <Uploader
@@ -207,9 +216,9 @@ export default {
   background-color: GetVariable('input-color');
   background-repeat: no-repeat;
   background-position: center;
-
   flex-grow: 1;
   height: inherit;
+
   &:before {
     position: absolute;
     top: 0;
@@ -221,22 +230,32 @@ export default {
     background-color: GetVariable('primary');
   }
 
-  &--active {
-    iframe {
-      display: none;
-    }
+  .kvass-media-thumbnail--delete {
+    top: initial;
+    right: 1rem;
+    bottom: 1rem;
+  }
 
+  &:hover {
+    .kvass-media-thumbnail--delete {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  &--active {
     border-color: GetVariable('primary');
 
     &:before {
       opacity: 0.15;
     }
-  }
 
-  &--invalid {
     iframe {
       display: none;
     }
+  }
+
+  &--invalid {
     cursor: not-allowed;
     color: GetVariable('error');
     border-color: GetVariable('error');
@@ -249,6 +268,10 @@ export default {
 
     .kvass-media-droparea__instruction {
       background: transparent !important;
+    }
+
+    iframe {
+      display: none;
     }
   }
 

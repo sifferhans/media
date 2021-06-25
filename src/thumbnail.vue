@@ -49,9 +49,9 @@ export default {
   &__item {
     background-color: GetVariable('input-color');
     cursor: pointer;
-
     border: 1px solid GetVariable('border-color');
     border-radius: GetVariable('border-radius');
+
     &--selected {
       border-color: GetVariable('primary');
       box-shadow: 0 3px 10px -2px rgba(black, 0.3);

@@ -14,6 +14,7 @@
       v-bind="$attrs"
       v-on="$listeners"
       @select="select"
+      @remove="remove"
       :selected="selected"
       :disabled="!hasImage"
     >
