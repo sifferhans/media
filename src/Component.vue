@@ -48,8 +48,9 @@
 </template>
 
 <script>
-import { AttributeBoolean } from './utils'
 import Draggable from 'vuedraggable'
+
+import { AttributeBoolean } from './utils'
 import Thumbnail from './thumbnail'
 import SlotHandler from './SlotHandler'
 import TypeSelector from './TypeSelector'

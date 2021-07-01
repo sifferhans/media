@@ -66,17 +66,13 @@ export default {
     top: -$size/5;
     position: absolute;
     z-index: 2;
-
     color: white;
     display: flex;
-
     justify-content: center;
     align-items: center;
-
     font-size: 0.65em;
     background-color: GetVariable('error');
     border-radius: 50%;
-
     cursor: pointer;
     transition: opacity 150ms ease-out, transform 150ms ease-out;
 

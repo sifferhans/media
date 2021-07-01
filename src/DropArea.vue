@@ -56,8 +56,9 @@
 </template>
 
 <script>
-import { AttributeBoolean, Clone, IsAccepted } from './utils'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+import { AttributeBoolean, Clone, IsAccepted } from './utils'
 import { Options } from '../index'
 import Uploader from './uploader'
 import SlotHandler from './SlotHandler'
@@ -281,7 +282,6 @@ export default {
     font-size: 0.9em;
     transition: opacity 250ms ease;
     text-align: center;
-    z-index: 2;
 
     @media (hover: hover) {
       .kvass-media-droparea--selected & {

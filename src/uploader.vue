@@ -46,34 +46,27 @@ export default {
 .kvass-media-uploader {
   font-size: 0.7em;
   font-weight: bold;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   width: 100%;
   max-width: 200px;
   padding: 1rem;
-
   border: 1px solid GetVariable('border-color');
   border-radius: GetVariable('border-radius');
   background-color: white;
 
   &__bar {
     flex-grow: 1;
-
     height: 5px;
     margin: 0 1rem;
-
     border-radius: GetVariable('border-radius');
     background-color: GetVariable('border-color');
   }
 
   &__bar-value {
     height: inherit;
-
     transition: width 100ms ease;
-
     border-radius: inherit;
     background-color: GetVariable('primary');
   }
