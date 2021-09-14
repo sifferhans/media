@@ -219,6 +219,7 @@ export default {
   background-position: center;
   flex-grow: 1;
   height: inherit;
+  min-height: 150px;
 
   &:before {
     position: absolute;

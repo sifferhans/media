@@ -33,7 +33,7 @@
         <slot name="custom-message" />
       </template>
     </DropArea>
-
+    <slot name="bottom" />
     <Draggable v-if="multiple" v-model="items" :disabled="!sortable || isDisabled" class="kvass-media__thumbnails">
       <Thumbnail
         v-for="(item, index) in items"

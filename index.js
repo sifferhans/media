@@ -18,12 +18,13 @@ const Options = {
   serialize(val) {
     return val
   },
+  dropMessage: 'Drag an image here or <b>browse</b> to upload.',
   labels: {
     image: 'Image',
     save: 'Save',
     cancel: 'Cancel',
     select: 'Select',
-    dropMessage: 'Drag an image here or <b>browse</b> to upload.',
+
     selectMessage: 'Select a type from the menu',
   },
 }

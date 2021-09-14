@@ -1,6 +1,6 @@
 {
   "name": "@kvass/media",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "main": "index.js",
   "dependencies": {
@@ -13,6 +13,7 @@
     "vue-elder-dropdown": "^1.4.1",
     "vue-elder-input": "^1.7.2",
     "vue-elder-modal": "^1.0.5",
+    "vue-youtube": "^1.4.0",
     "vuedraggable": "^2.24.3"
   },
   "devDependencies": {
