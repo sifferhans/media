@@ -210,7 +210,6 @@ export default {
   align-items: center;
   flex-grow: 1;
   justify-content: center;
-  padding: 1rem;
   text-align: center;
   border: 2px dashed GetVariable('border-color');
   border-radius: GetVariable('border-radius');
@@ -220,6 +219,7 @@ export default {
   flex-grow: 1;
   height: inherit;
   min-height: 150px;
+  height: 100%;
 
   &:before {
     position: absolute;

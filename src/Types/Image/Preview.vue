@@ -33,5 +33,6 @@ export default {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  border-radius: inherit;
 }
 </style>
