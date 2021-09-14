@@ -3,7 +3,7 @@
     <component
       :class="{ 'kvass-media-thumbnail__item--selected': value.selected }"
       class="kvass-media-thumbnail__item"
-      :is="value.typeConfig.Components.Thumbnail"
+      :is="value.typeConfig.components.Thumbnail"
       :value="value"
       v-on="$listeners"
       :style="style"

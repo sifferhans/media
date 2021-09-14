@@ -3,11 +3,11 @@ import Thumbnail from './Thumbnail'
 import Preview from './Preview'
 
 export default {
-  Name: 'Image',
-  Condition: (x) => {
+  name: 'Image',
+  condition: (x) => {
     return /^image\/.+/i.test(x.type)
   },
-  Components: {
+  components: {
     CreateTrigger,
     Thumbnail,
     Preview,

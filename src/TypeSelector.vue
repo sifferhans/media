@@ -8,9 +8,9 @@
       <ButtonComponent :label="label.select" type="button" class="kvass-media-type-selector__action" />
       <template #dropdown>
         <component
-          :is="item.Components.CreateTrigger"
+          :is="item.components.CreateTrigger"
           v-for="item in value"
-          :key="item.Name"
+          :key="item.name"
           @click.native="open(item)"
         />
       </template>
@@ -21,7 +21,7 @@
           <template #default>
             <component
               v-if="show"
-              :is="show.Components.Create"
+              :is="show.components.Create"
               :is-valid.sync="isValid"
               :upload="upload"
               ref="creator"
@@ -69,7 +69,7 @@ export default {
   },
   computed: {
     hasOnlyImage() {
-      if (this.value.length === 1 && this.value[0].Name === 'Image') return true
+      if (this.value.length === 1 && this.value[0].name === 'Image') return true
       return false
     },
 
@@ -85,7 +85,7 @@ export default {
       })
     },
     open(item) {
-      if (item.Name === 'Image') return this.$parent.$refs.input.click()
+      if (item.name === 'Image') return this.$parent.$refs.input.click()
       this.show = item
     },
   },

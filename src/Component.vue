@@ -23,7 +23,7 @@
       </template>
 
       <template #preview>
-        <component v-if="selected" :is="selected.typeConfig.Components.Preview" :value="selected" />
+        <component v-if="selected" :is="selected.typeConfig.components.Preview" :value="selected" />
       </template>
 
       <template #drop-message>
@@ -51,7 +51,7 @@
 import Draggable from 'vuedraggable'
 
 import { AttributeBoolean } from './utils'
-import Thumbnail from './thumbnail'
+import Thumbnail from './Thumbnail'
 import SlotHandler from './SlotHandler'
 import TypeSelector from './TypeSelector'
 import Types from './Types'
@@ -109,7 +109,7 @@ export default {
 
   computed: {
     hasImage() {
-      return this.typesComp.some((item) => item.Name === 'Image')
+      return this.typesComp.some((item) => item.name === 'Image')
     },
     items: {
       get() {
@@ -120,7 +120,7 @@ export default {
           return {
             ...v,
             selected: this.selected && this.selected.url === v.url,
-            typeConfig: this.typesComp.find((t) => t.Condition(v)),
+            typeConfig: this.typesComp.find((t) => t.condition(v)),
           }
         })
       },
