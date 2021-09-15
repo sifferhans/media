@@ -23,7 +23,7 @@
       </template>
 
       <template #preview>
-        <component v-if="selected" :is="selected.typeConfig.components.Preview" :value="selected" />
+        <component v-if="selected" :is="selected.typeConfig.components.Preview" :value="selected" :size="size" />
       </template>
 
       <template #drop-message>

@@ -9,6 +9,9 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    size: {
+      type: String,
+    },
     isValid: {
       type: Boolean,
       default: true,
@@ -18,6 +21,7 @@ export default {
   computed: {
     style() {
       return {
+        backgroundSize: this.size,
         backgroundImage: `url(${this.value.url})`,
       }
     },
@@ -27,12 +31,13 @@ export default {
 
 <style lang="scss">
 .kvass-media-image-preview {
+  padding: 1rem;
   width: 100%;
   height: 100%;
   text-align: center;
-  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   border-radius: inherit;
+  background-origin: content-box;
 }
 </style>
