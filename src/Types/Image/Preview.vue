@@ -21,6 +21,7 @@ export default {
   computed: {
     style() {
       return {
+        padding: this.size === 'cover' ? '0' : '1rem',
         backgroundSize: this.size,
         backgroundImage: `url(${this.value.url})`,
       }
@@ -31,7 +32,6 @@ export default {
 
 <style lang="scss">
 .kvass-media-image-preview {
-  padding: 1rem;
   width: 100%;
   height: 100%;
   text-align: center;
