@@ -60,7 +60,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import { AttributeBoolean, Clone, IsAccepted } from './utils'
 import { Options } from '../index'
-import Uploader from './uploader'
+import Uploader from './Uploader'
 import SlotHandler from './SlotHandler'
 
 const QueueTemplate = {

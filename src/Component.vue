@@ -1,10 +1,12 @@
 <template>
   <div class="kvass-media" :class="['kvass-media--' + placement]">
-    <label v-if="label" class="kvass-media__label">
-      {{ label }}
-      <span v-if="isRequired" class="kvass-media__label-required">*</span>
-    </label>
-
+    <div class="kvass-media__label-wrapper">
+      <label v-if="label" class="kvass-media__label">
+        {{ label }}
+        <span v-if="isRequired" class="kvass-media__label-required">*</span>
+      </label>
+      <slot name="top" />
+    </div>
     <DropArea
       type="file"
       accept="image/*"
@@ -198,6 +200,10 @@ export default {
 
     &-required {
       color: GetVariable('error');
+    }
+    &-wrapper {
+      display: flex;
+      justify-content: space-between;
     }
   }
 

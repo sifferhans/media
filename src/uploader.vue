@@ -44,6 +44,8 @@ export default {
 @import './main';
 
 .kvass-media-uploader {
+  position: absolute;
+  top: 0;
   font-size: 0.7em;
   font-weight: bold;
   display: flex;
