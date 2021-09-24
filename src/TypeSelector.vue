@@ -110,9 +110,10 @@ export default {
   &__info {
     margin-bottom: 1rem;
   }
-}
-.kvass-card {
-  max-width: 700px;
-  width: 100%;
+
+  .kvass-card {
+    max-width: 700px;
+    width: 100%;
+  }
 }
 </style>
