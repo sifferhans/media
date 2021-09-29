@@ -19,6 +19,7 @@
       @remove="remove"
       :selected="selected"
       :disabled="!hasImage"
+      :upload-options="uploadOptions"
     >
       <template #default>
         <TypeSelector :value="typesComp" @add="addItem" :has-image="hasImage" />
