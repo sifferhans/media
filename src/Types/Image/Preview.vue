@@ -32,12 +32,11 @@ export default {
 
 <style lang="scss">
 .kvass-media-image-preview {
-  width: 100%;
-  height: 100%;
   text-align: center;
   background-repeat: no-repeat;
   background-position: center;
   border-radius: inherit;
   background-origin: content-box;
+  flex-grow: 1;
 }
 </style>

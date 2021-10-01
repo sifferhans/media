@@ -220,6 +220,7 @@ export default {
   height: inherit;
   min-height: 150px;
   height: 100%;
+  flex-direction: column;
 
   &:before {
     position: absolute;
