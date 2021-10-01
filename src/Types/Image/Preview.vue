@@ -38,5 +38,7 @@ export default {
   border-radius: inherit;
   background-origin: content-box;
   flex-grow: 1;
+  height: 100%;
+  width: 100%;
 }
 </style>
