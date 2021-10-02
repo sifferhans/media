@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="kvass-media-droparea-wrapper">
     <div
       class="kvass-media-droparea"
       :class="{
@@ -217,7 +217,6 @@ export default {
   background-repeat: no-repeat;
   background-position: center;
   flex-grow: 1;
-  height: inherit;
   min-height: 150px;
   height: 100%;
   flex-direction: column;
@@ -231,6 +230,10 @@ export default {
     content: '';
     opacity: 0;
     background-color: GetVariable('primary');
+  }
+
+  &-wrapper {
+    flex-grow: 1;
   }
 
   .kvass-media-thumbnail--delete {
