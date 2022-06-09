@@ -139,10 +139,7 @@ export default {
       },
     },
     isDisabled: AttributeBoolean('disabled'),
-    isRequired() {
-      if (!AttributeBoolean('required').call(this) || this.value) return false
-      return true
-    },
+    isRequired: AttributeBoolean('required'),
     typesComp() {
       return this.types
         .map((type) => {
