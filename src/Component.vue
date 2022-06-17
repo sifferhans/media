@@ -165,7 +165,7 @@ export default {
     addItem(item) {
       let value = this.value || []
       this.$emit('input', this.multiple ? [...value, ...[item]] : item)
-      this.select(this.items.find((i) => i.url === item.url))
+      this.$nextTick(() => this.select(this.items.find((i) => i.url === item.url)))
     },
   },
   created() {
