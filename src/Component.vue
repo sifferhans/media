@@ -9,7 +9,7 @@
     </div>
     <DropArea
       type="file"
-      accept="image/*"
+      :accept="$attrs.accept || 'image/*'"
       ref="input"
       :value="value"
       :multiple="multiple"
@@ -20,6 +20,7 @@
       :selected="selected"
       :disabled="!hasImage"
       :upload-options="uploadOptions"
+      :upload="upload"
     >
       <template #default>
         <TypeSelector :value="typesComp" @add="addItem" :has-image="hasImage" />

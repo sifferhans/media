@@ -9,6 +9,7 @@
     "@fortawesome/vue-fontawesome": "^2.0.2",
     "@kvass/card": "^1.0.3",
     "@linusborg/vue-simple-portal": "^0.1.5",
+    "mime": "^3.0.0",
     "vue-elder-button": "^1.6.7",
     "vue-elder-dropdown": "^1.4.1",
     "vue-elder-input": "^1.7.2",
