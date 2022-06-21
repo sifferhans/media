@@ -52,7 +52,7 @@ export default {
           props: {},
           listeners: {
             click: () => {
-              fetch(this.value.url)
+              fetch(this.value.url, { headers: { 'Cache-Control': 'no-cache' } })
                 .then((res) => res.blob())
                 .then((blob) => {
                   const blobURL = URL.createObjectURL(blob)
