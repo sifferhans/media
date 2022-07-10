@@ -10,7 +10,7 @@
     >
     </component>
     <div class="kvass-media-thumbnail__actions">
-      <div class="kvass-media-thumbnail__delete" @click="$emit('delete')">
+      <div v-if="!disabled" class="kvass-media-thumbnail__delete" @click="$emit('delete')">
         <FontAwesomeIcon icon="trash" />
       </div>
       <component

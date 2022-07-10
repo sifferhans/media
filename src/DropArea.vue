@@ -13,7 +13,7 @@
     >
       <slot name="preview" />
 
-      <div class="kvass-media-droparea__instruction">
+      <div v-if="!isDisabled" class="kvass-media-droparea__instruction">
         <input
           v-if="canUpload"
           :type="type"
@@ -234,6 +234,10 @@ export default {
 
   &-wrapper {
     flex-grow: 1;
+
+    &[disabled='disabled'] {
+      cursor: not-allowed;
+    }
   }
 
   .kvass-media-thumbnail--delete {

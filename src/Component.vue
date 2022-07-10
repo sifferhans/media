@@ -18,7 +18,7 @@
       @select="select"
       @remove="remove"
       :selected="selected"
-      :disabled="!hasImage"
+      :disabled="!hasImage || isDisabled"
       :upload-options="uploadOptions"
       :upload="upload"
     >
@@ -207,17 +207,10 @@ export default {
   }
 
   &__thumbnails {
-    $space: 1rem;
     display: flex;
     flex-wrap: wrap;
-    margin-top: 1rem;
-    margin-bottom: -$space;
-    margin-left: -$space;
-
-    & > * {
-      margin-bottom: $space;
-      margin-left: $space;
-    }
+    margin-top: 0.5rem;
+    gap: 0.5rem;
 
     .kvass-media--inside & {
       position: absolute;
