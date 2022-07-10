@@ -1,11 +1,9 @@
 <template>
   <div v-if="!hasOnlyImage" class="kvass-media-type-selector">
-    <span class="kvass-media-type-selector__info">{{
-      hasImage ? ` / ${label.selectMessage.toLowerCase()}` : label.selectMessage
-    }}</span>
+    <span class="kvass-media-type-selector__info">{{ hasImage ? `${label.selectMessage}` : label.selectMessage }}</span>
 
     <DropdownComponent>
-      <ButtonComponent :label="label.select" type="button" class="kvass-media-type-selector__action" />
+      <ButtonComponent :label="label.select" icon="plus" type="button" class="kvass-media-type-selector__action" />
       <template #dropdown>
         <component
           :is="item.components.CreateTrigger"
@@ -103,14 +101,20 @@ export default {
 
 <style lang="scss">
 .kvass-media-type-selector {
-  margin-top: 0.5rem;
   display: flex;
   font-size: 0.9em;
   flex-direction: column;
   align-items: center;
 
+  .elder-dropdown__content {
+    button {
+      padding: 0.5rem;
+      justify-content: space-between;
+    }
+  }
+
   &__info {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 
   .kvass-card {

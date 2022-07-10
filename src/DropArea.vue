@@ -37,13 +37,12 @@
         <slot name="custom-message" />
       </div>
 
-      <div
-        v-if="!multiple && selected && !isDisabled"
-        class="kvass-media-thumbnail--delete"
-        @click="$emit('remove', selected)"
-      >
-        <FontAwesomeIcon icon="trash"></FontAwesomeIcon>
-      </div>
+      <Actions
+        v-if="!multiple && selected"
+        :value="selected"
+        :disabled="isDisabled"
+        @delete="$emit('remove', selected)"
+      />
     </div>
     <Uploader
       v-if="queue.total"
@@ -62,6 +61,7 @@ import { AttributeBoolean, Clone, IsAccepted } from './utils'
 import { Options } from '../index'
 import Uploader from './Uploader'
 import SlotHandler from './SlotHandler'
+import Actions from './ThumbnailActions.vue'
 
 const QueueTemplate = {
   counter: 0,
@@ -197,6 +197,7 @@ export default {
     Uploader,
     FontAwesomeIcon,
     SlotHandler,
+    Actions,
   },
 }
 </script>
@@ -232,24 +233,18 @@ export default {
     background-color: GetVariable('primary');
   }
 
+  @media (hover: hover) {
+    &:hover .kvass-media-thumbnail-actions {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   &-wrapper {
     flex-grow: 1;
 
     &[disabled='disabled'] {
       cursor: not-allowed;
-    }
-  }
-
-  .kvass-media-thumbnail--delete {
-    top: initial;
-    right: 1rem;
-    bottom: 1rem;
-  }
-
-  &:hover {
-    .kvass-media-thumbnail--delete {
-      transform: translateY(0);
-      opacity: 1;
     }
   }
 
@@ -287,7 +282,7 @@ export default {
 
   &__instruction {
     position: absolute;
-    max-height: 250px;
+    max-width: 75ch;
     font-size: 0.9em;
     transition: opacity 250ms ease;
     text-align: center;
@@ -297,7 +292,8 @@ export default {
         padding: 1rem;
         opacity: 0;
         border-radius: GetVariable('border-radius');
-        background-color: white;
+        background-color: rgba(white, 0.7);
+        backdrop-filter: blur(8px);
       }
     }
 
