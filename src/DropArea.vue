@@ -135,7 +135,7 @@ export default {
   },
   methods: {
     run(files) {
-      files = Array.from(files).filter((f) => IsAccepted(f, 'image/*'))
+      files = Array.from(files).filter((f) => IsAccepted(f, this.accept))
       this.queue.total = files.length
       this.queue.counter = 0
       this.queue.bytes = files.reduce((res, cur) => (res += cur.size), 0)
@@ -180,7 +180,7 @@ export default {
     },
     onDragOver(e) {
       if (this.isDisabled) return
-      this.isValidDragOver = Array.from(e.dataTransfer.items).every((e) => IsAccepted(e, 'image/*'))
+      this.isValidDragOver = Array.from(e.dataTransfer.items).every((e) => IsAccepted(e, this.accept))
       this.isDragOver = true
       e.preventDefault()
     },

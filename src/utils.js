@@ -1,5 +1,7 @@
+import * as Mime from 'mime/lite'
+
 function AttributeBoolean(key) {
-  return function() {
+  return function () {
     return ['', true, 'true'].includes(this.$attrs[key])
   }
 }
@@ -17,9 +19,17 @@ function Clone(val) {
 
 function IsAccepted(file, accept) {
   if (!accept) return true
-  return accept.split(',').some(v => {
-    return file.type.startsWith(v.replace('*', ''))
-  })
+  return accept
+    .split(',')
+    .map((v) => v.trim())
+    .some((v) => {
+      if (v.startsWith('.')) {
+        let type = Mime.getType(v.substring(1))
+        return type === file.type
+      }
+      if (v.includes('*')) return file.type.startsWith(v.replace('*', ''))
+      return file.type === v
+    })
 }
 
 export { AttributeBoolean, BytesToSize, Clone, IsAccepted }
