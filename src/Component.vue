@@ -4,7 +4,7 @@
       <label v-if="label" class="kvass-media__label">
         {{ label }}
         <span v-if="isRequired" class="kvass-media__label-required">*</span>
-        <slot name="top" />
+        <slot name="after-label" />
       </label>
       <span class="kvass-media__sublabel">
         <slot name="sublabel">{{ sublabel }}</slot>
