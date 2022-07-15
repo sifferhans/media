@@ -4,8 +4,11 @@
       <label v-if="label" class="kvass-media__label">
         {{ label }}
         <span v-if="isRequired" class="kvass-media__label-required">*</span>
+        <slot name="after-label" />
       </label>
-      <slot name="top" />
+      <span class="kvass-media__sublabel">
+        <slot name="sublabel">{{ sublabel }}</slot>
+      </span>
     </div>
     <DropArea
       type="file"
@@ -71,6 +74,7 @@ export default {
       default: () => ['Image'],
     },
     label: String,
+    sublabel: String,
     multiple: Boolean,
     sortable: {
       type: Boolean,
@@ -194,16 +198,23 @@ export default {
 
   &__label {
     font-weight: bold;
-    display: block;
-    margin-bottom: 0.5em;
+    display: flex;
+    align-items: end;
+    gap: 0.5rem;
 
     &-required {
       color: GetVariable('error');
     }
+
     &-wrapper {
-      display: flex;
-      justify-content: space-between;
+      margin-bottom: 0.5em;
     }
+  }
+
+  &__sublabel {
+    font-size: 0.9em;
+    display: block;
+    opacity: 0.5;
   }
 
   &__thumbnails {
