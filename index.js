@@ -24,7 +24,7 @@ const Options = {
     save: 'Save',
     cancel: 'Cancel',
     select: 'Select',
-
+    descriptionPlaceholder: 'Add caption...',
     selectMessage: 'Select a type from the menu',
   },
 }

@@ -29,8 +29,9 @@
         <TypeSelector :value="typesComp" @add="addItem" :has-image="hasImage" />
       </template>
 
-      <template #preview>
-        <component v-if="selected" :is="selected.typeConfig.components.Preview" :value="selected" :size="size" />
+      <template v-if="selected" #preview>
+        <Description v-if="description" v-model="selectedSource.description" />
+        <component :is="selected.typeConfig.components.Preview" :value="selected" :size="size" />
       </template>
 
       <template #drop-message>
@@ -63,6 +64,7 @@ import SlotHandler from './SlotHandler'
 import TypeSelector from './TypeSelector'
 import Types from './Types'
 import DropArea from './DropArea'
+import Description from './Description'
 
 import './icons'
 
@@ -87,11 +89,18 @@ export default {
     },
     placement: {
       type: String,
-      enum: ['outside', 'inside'],
+      default: 'outside',
+      validator(val) {
+        return ['outside', 'inside'].includes(val)
+      },
     },
     uploadOptions: {
       type: Object,
       default: () => ({}),
+    },
+    description: {
+      type: Boolean,
+      default: true,
     },
   },
   watch: {
@@ -118,6 +127,12 @@ export default {
   computed: {
     hasImage() {
       return this.typesComp.some((item) => item.name === 'Image')
+    },
+    selectedSource() {
+      if (!this.selected) return
+
+      if (this.value instanceof Array) return this.value.find((v) => v.url === this.selected.url)
+      return this.value
     },
     items: {
       get() {
@@ -183,6 +198,7 @@ export default {
     SlotHandler,
     TypeSelector,
     DropArea,
+    Description,
   },
 }
 </script>
