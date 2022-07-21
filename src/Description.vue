@@ -36,6 +36,7 @@ export default {
   padding: 0.5rem 0.75rem;
   text-align: left;
   font: inherit;
+  z-index: 1;
 
   border-radius: var(--border-radius, 3px);
   backdrop-filter: blur(8px);
