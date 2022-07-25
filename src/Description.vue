@@ -43,6 +43,8 @@ export default {
   transition: 150ms ease-out;
   text-overflow: ellipsis;
 
+  z-index: 1;
+
   @media (hover: hover) {
     transform: translateY(1rem);
     opacity: 0;
