@@ -106,7 +106,7 @@ export default {
   watch: {
     value: {
       handler(val) {
-        if (!this.selected) this.select()
+        if (!this.selected || !this.items.find((i) => i.url === this.selected.url)) this.select()
       },
       immediate: true,
     },
