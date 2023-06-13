@@ -286,6 +286,7 @@ export default {
     font-size: 0.9em;
     transition: opacity 250ms ease;
     text-align: center;
+    z-index: 1;
 
     @media (hover: hover) {
       .kvass-media-droparea--selected & {
